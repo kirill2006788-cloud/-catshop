@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Котостудия — фотосъёмка котиков</title>
+
+  <!-- Bootstrap 5 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Compiled SCSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===================== НАВИГАЦИЯ ===================== -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand brand" href="#">Котостудия</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu"
+        aria-controls="navMenu"
+        aria-expanded="false"
+        aria-label="Меню"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-2">
+          <li class="nav-item"><a class="nav-link" href="#about">О нас</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Галерея</a></li>
+          <li class="nav-item"><a class="nav-link" href="#booking">Записаться</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero text-center">
+    <div class="container">
+      <h1 class="hero__title">Мы фотографируем котиков</h1>
+      <p class="hero__subtitle">
+        Добро пожаловать в «Котостудию» — пространство, где пушистики становятся моделями!
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== О НАС ===================== -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about__inner">
+        <div class="about__text">
+          <h2 class="section-title">О нас</h2>
+          <p>
+            Котостудия — первая в городе фотостудия, специализирующаяся исключительно
+            на съёмке кошек и котов. Мы создаём уютную атмосферу, чтобы ваш питомец
+            чувствовал себя комфортно и выглядел великолепно на снимках.
+          </p>
+          <p>
+            В нашем арсенале — профессиональный свет, тематические декорации и
+            бесконечное терпение. Каждая сессия уникальна, как и ваш котик!
+          </p>
+        </div>
+        <div class="about__emoji">🐱</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ГАЛЕРЕЯ ===================== -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2 class="section-title text-center">Галерея</h2>
+      <div class="gallery__grid">
+        <div class="gallery__item">
+          <img
+            src="https://placekitten.com/400/300"
+            alt="Котик 1"
+            class="gallery__img"
+          />
+        </div>
+        <div class="gallery__item">
+          <img
+            src="https://placekitten.com/401/300"
+            alt="Котик 2"
+            class="gallery__img"
+          />
+        </div>
+        <div class="gallery__item">
+          <img
+            src="https://placekitten.com/402/300"
+            alt="Котик 3"
+            class="gallery__img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ФОРМА ЗАПИСИ ===================== -->
+  <section id="booking" class="booking">
+    <div class="container">
+      <h2 class="section-title text-center">Записаться на фотосессию</h2>
+
+      <form id="bookingForm" class="booking__form" novalidate>
+
+        <div class="mb-3">
+          <label for="name" class="form-label">Имя:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            placeholder="Ваше имя"
+            required
+            minlength="2"
+          />
+          <div class="invalid-feedback">Введите имя (минимум 2 символа)</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="example@mail.ru"
+            required
+          />
+          <div class="invalid-feedback">Введите корректный email</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="catName" class="form-label">Имя котика:</label>
+          <input
+            type="text"
+            id="catName"
+            name="catName"
+            class="form-control"
+            placeholder="Как зовут вашего пушистика?"
+            required
+            minlength="1"
+          />
+          <div class="invalid-feedback">Введите имя котика</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-submit">Записаться</button>
+
+        <div id="successMsg" class="success-msg d-none">
+          🐾 Отлично! Мы скоро свяжемся с вами.
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== ФУТЕР ===================== -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>© 2025 Котостудия. Мурлычем с любовью 🐾</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Валидация формы -->
+  <script>
+    const form = document.getElementById('bookingForm');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return;
+      }
+
+      // Успешная отправка
+      form.classList.remove('was-validated');
+      form.reset();
+      successMsg.classList.remove('d-none');
+
+      setTimeout(() => successMsg.classList.add('d-none'), 4000);
+    });
+  </script>
+
+</body>
+</html>

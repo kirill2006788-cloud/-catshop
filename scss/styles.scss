@@ -1,0 +1,229 @@
+// ============================================================
+//  SCSS — Котостудия
+// ============================================================
+@use 'sass:color';
+
+// ---------- Переменные ----------
+$pink:        #e91e8c;
+$pink-light:  #fff0f7;
+$pink-hover:  #c4007a;
+$dark:        #1a1a1a;
+$text:        #333;
+$radius:      8px;
+$transition:  0.3s ease;
+
+// ---------- Миксины ----------
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin section-padding {
+  padding: 60px 0;
+}
+
+// ---------- Базовые стили ----------
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: $text;
+  background: #fff;
+}
+
+// ---------- Навигация ----------
+.navbar {
+  background-color: $dark !important;
+
+  .brand {
+    color: $pink !important;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    &:hover {
+      color: color.adjust($pink, $lightness: 15%) !important;
+    }
+  }
+
+  .nav-link {
+    color: #ccc !important;
+    transition: color $transition;
+
+    &:hover {
+      color: $pink !important;
+    }
+  }
+}
+
+// ---------- Hero ----------
+.hero {
+  @include section-padding;
+  background: $pink-light;
+
+  &__title {
+    color: $pink;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    color: $text;
+    font-size: 1.05rem;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
+
+// ---------- Заголовки секций ----------
+.section-title {
+  color: $pink;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+// ---------- О нас ----------
+.about {
+  @include section-padding;
+  background: #fff;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__text {
+    flex: 1;
+
+    p {
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+  }
+
+  &__emoji {
+    font-size: 5rem;
+    @include flex-center;
+  }
+}
+
+// ---------- Галерея ----------
+.gallery {
+  @include section-padding;
+  background: $pink-light;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    overflow: hidden;
+    border-radius: $radius;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transition: transform $transition, box-shadow $transition;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba($pink, 0.3);
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform $transition;
+
+    &:hover {
+      transform: scale(1.04);
+    }
+  }
+}
+
+// ---------- Форма ----------
+.booking {
+  @include section-padding;
+  background: #fff;
+
+  &__form {
+    max-width: 660px;
+    margin: 0 auto;
+  }
+
+  .form-label {
+    font-weight: 600;
+  }
+
+  .form-control {
+    border-radius: $radius;
+    border: 1px solid #ddd;
+    padding: 10px 14px;
+    transition: border-color $transition, box-shadow $transition;
+
+    &:focus {
+      border-color: $pink;
+      box-shadow: 0 0 0 3px rgba($pink, 0.2);
+      outline: none;
+    }
+  }
+}
+
+.btn-submit {
+  background-color: $pink;
+  border: none;
+  padding: 10px 32px;
+  font-size: 1rem;
+  border-radius: $radius;
+  transition: background-color $transition, transform $transition;
+
+  &:hover {
+    background-color: $pink-hover;
+    transform: translateY(-2px);
+  }
+}
+
+.success-msg {
+  margin-top: 16px;
+  padding: 12px 20px;
+  background: color.adjust($pink, $lightness: 38%);
+  border: 1px solid $pink;
+  border-radius: $radius;
+  color: $pink-hover;
+  font-weight: 600;
+}
+
+// ---------- Футер ----------
+.footer {
+  background: $dark;
+  color: #aaa;
+  padding: 20px 0;
+  font-size: 0.9rem;
+}
